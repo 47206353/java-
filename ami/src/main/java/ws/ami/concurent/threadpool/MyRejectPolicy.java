@@ -16,8 +16,7 @@ public class MyRejectPolicy implements RejectedExecutionHandler {
 
 	public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
 		System.out.println("拒绝");
-
-		throw new RejectedExecutionException("线程池拒絕");
+              throw new RejectedExecutionException("线程池拒絕");
 
 	}
 

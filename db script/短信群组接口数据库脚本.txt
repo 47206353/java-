@@ -1,0 +1,54 @@
+CREATE TABLE T_SMS_GROUP
+(
+GROUPID NUMBER(16),
+GROUPNAME VARCHAR2(32),
+GROUPCODE VARCHAR2(32),
+STAT VARCHAR2(8),
+DES VARCHAR2(128),
+CREATE_TIME DATE,
+UPDATE_TIME DATE,
+PRIMARY KEY(GROUPID)
+);
+
+
+CREATE SEQUENCE SQ_SMS_GROUP
+minvalue 1 
+maxvalue 99999999 
+start with 1 
+increment by 1
+nocache order;
+
+
+CREATE OR REPLACE TRIGGER AUTOINCREMENT
+BEFORE INSERT ON T_SMS_GROUP
+FOR EACH ROW
+WHEN (NEW.GROUPID IS NULL)
+BEGIN
+SELECT SEQ_SMS_GROUP.NEXTVAL INTO :NEW.GROUPID FROM DUAL;
+END;
+
+
+
+Create table T_sms_merber
+(
+memberid number(16),
+name varchar2(32),
+phone_number varchar2(16),
+stat varchar2(8),
+des varchar2(128),
+create_time date,
+update_time date,
+operator varchar2(32),
+primary key(memberid)
+
+);
+
+create table t_sms_group_member
+(
+ID VARCHAR2(16),
+GROUPID VARCHAR2(16),
+MEMBERID VARCHAR2(16),
+PRIMARY KEY(ID)
+
+
+)

@@ -1,7 +1,8 @@
 package ws.ami.concurent.falseshare;
 
 /**
- * 该类展示了缓存缺失的其中一种情况
+ * 该类展示了缓存缺失的其中一种情况：请注意现代cpu一般缓存有三级，L1，L2，L3.其中L1离cpu最近
+ * L3离cpu最远。L1,L2一般为一个cpu专有，L3为多个cpu共享
  * 
  * 
  * 在加载longs[i][j]时, longs[i][j+1]很可能也会被加载至cache中, 所以立即访问longs[i][j+1]将会命中L1

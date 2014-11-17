@@ -15,7 +15,7 @@ public class ValidatorImpl implements IValidator {
     /**
      * 返回多个错误
      * @param obj
-     * @throws ValidationException
+     
      */
     public void validateMutil(Object obj) throws ValidationException {
         Set<ConstraintViolation<Object>> constraintViolations =

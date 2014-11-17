@@ -16,6 +16,54 @@
 		<junit>3.8.1</junit>
 	</properties>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<mavenDir>dev</mavenDir>
+				<env>dev</env>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>test</id>
+			<properties>
+				<mavenDir>test</mavenDir>
+			</properties>
+		</profile>
+
+
+	</profiles>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>    <!--执行器 mvn assembly:assembly -->
+					<execution>
+						<id>make-tar.gz</id>
+						<!--名字任意 -->
+						<phase>package</phase>
+						<!-- 绑定到package生命周期阶段上 -->
+						<goals>
+							<goal>single</goal>
+							<!--只运行一次 -->
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/resources/assemble/descriptor.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -30,18 +78,16 @@
 			<artifactId>guava</artifactId>
 			<version>${google-guava-version}</version>
 		</dependency>
-		
-		
-		  <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>1.1.0.Final</version>
-        </dependency>
-        
-      <!--    <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.el</artifactId>
-        </dependency> -->
+
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.glassfish</groupId> <artifactId>javax.el</artifactId> 
+			</dependency> -->
 
 	</dependencies>
 </project>

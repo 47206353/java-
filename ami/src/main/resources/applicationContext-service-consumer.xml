@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--application name-->
+    <dubbo:application name="pay-fas-service" logger="slf4j"/>
+    <!-- registry address, used for service to register itself -->
+    <dubbo:registry address="zookeeper://${zookeeper.address}"/>
+    <!-- expose this service through dubbo protocol, through port 21081 -->
+    <dubbo:protocol name="dubbo" port="${dubbo.service.port}"/>
+
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:consumer lazy="true" check="false" timeout="10000" retries="0"/>
+
+    <dubbo:reference id="transferService"
+                     interface="com.bestpay.pgw.service.TransferService"/>
+
+    <dubbo:reference id="authorizedCardAcctRechargeService"
+                     interface="com.bestpay.pgw.service.AuthorizedCardAcctRechargeService"/>
+    <dubbo:reference id="authorizedCardAcctWithdrawalService"
+                     interface="com.bestpay.pgw.service.AuthorizedCardAcctWithdrawalService"/>
+    <dubbo:reference id="guaranteeTransactionApplyService"
+                     interface="com.bestpay.pgw.service.GuaranteeTransactionApplyService"
+            />
+    <dubbo:reference id="guaranteeTransactionCancelService"
+                     interface="com.bestpay.pgw.service.GuaranteeTransactionCancelService"
+            />
+    <dubbo:reference id="guaranteeTransactionConfirmService"
+                     interface="com.bestpay.pgw.service.GuaranteeTransactionConfirmService"
+            />
+
+    <dubbo:reference id="preAuthorizationApplyService"
+                     interface="com.bestpay.pgw.service.PreAuthorizationApplyService"
+            />
+
+    <dubbo:reference id="preAuthorizationCancelService"
+                     interface="com.bestpay.pgw.service.PreAuthorizationCancelService"
+            />
+
+    <dubbo:reference id="preAuthorizationConfirmService"
+                     interface="com.bestpay.pgw.service.PreAuthorizationConfirmService"
+            />
+
+    <dubbo:reference id="arpAgentPayService"
+                     interface="com.bestpay.arp.service.ArpAgentPayService"
+            />
+    <dubbo:reference id="arpAgentReceiveService"
+                     interface="com.bestpay.arp.service.ArpAgentReceiveService"
+            />
+    <dubbo:reference id="arpAgentReceiveToAccountService"
+                     interface="com.bestpay.arp.service.ArpAgentReceiveToAccountService"
+            />
+
+    <dubbo:reference id="arpSignAgentReceiveService" interface="com.bestpay.arp.service.ArpSignAgentReceiveService"/>
+    <dubbo:reference id="arpSignAgentReceiveToAccountService"
+                     interface="com.bestpay.arp.service.ArpSignAgentReceiveToAccountService"/>
+    <dubbo:reference id="arpCancelSignService" interface="com.bestpay.arp.service.ArpCancelSignService"/>
+    <dubbo:reference id="arpSignQueryService" interface="com.bestpay.arp.service.ArpSignQueryService"/>
+    <dubbo:reference id="arpValidateService" interface="com.bestpay.arp.service.ArpValidateService"/>
+    <dubbo:reference id="arpValidAgentReceiveToAccountService"
+                     interface="com.bestpay.arp.service.ArpValidAgentReceiveToAccountService"/>
+    <dubbo:reference id="arpValidAgentReceiveService" interface="com.bestpay.arp.service.ArpValidAgentReceiveService"/>
+    <dubbo:reference id="arpSignService" interface="com.bestpay.arp.service.ArpSignService"/>
+    <dubbo:reference id="reverseService" interface="com.bestpay.pgw.service.ReverseService"/>
+    <dubbo:reference id="consumeService" interface="com.bestpay.pgw.service.ConsumeService"/>
+    <dubbo:reference id="feeQueryService" interface="com.bestpay.pay.foundation.service.FeeQueryService"/>
+
+
+    <dubbo:reference id="transQueryListService" interface="com.bestpay.pgw.service.query.TransQueryListService"/>
+
+    <dubbo:reference id="pcpRechargeTransferService"
+                     interface="com.bestpay.composite.service.PcpRechargeTransferService"/>
+</beans>

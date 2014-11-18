@@ -14,11 +14,13 @@ public class PropertiesT {
 		try {
 			pps.load(new FileInputStream("app.properties"));
 		} catch (Exception e) {
-			// TODO: handle exception
+
+			e.printStackTrace();
 		}
 
-		//pps.list(System.out);
+		pps.list(System.out);
 		String value = pps.getProperty("l");
 		System.out.println(value);
+
 	}
 }

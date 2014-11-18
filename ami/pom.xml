@@ -13,64 +13,25 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<google-guava-version> 15.0</google-guava-version>
-		<junit>3.8.1</junit>
+		<junit.version>4.11</junit.version>
+		<hibernate.validator.version>5.0.1.Final</hibernate.validator.version>
+		<javax.validation>1.1.0.Final</javax.validation>
+		<el.version>3.0-b01</el.version>
 	</properties>
-
-	<profiles>
-		<profile>
-			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<mavenDir>dev</mavenDir>
-				<env>dev</env>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>test</id>
-			<properties>
-				<mavenDir>test</mavenDir>
-			</properties>
-		</profile>
+	<!-- <profiles> <profile> <id>dev</id> <activation> <activeByDefault>true</activeByDefault> 
+		</activation> <properties> <mavenDir>dev</mavenDir> <env>dev</env> </properties> 
+		</profile> <profile> <id>test</id> <properties> <mavenDir>test</mavenDir> 
+		</properties> </profile> </profiles> -->
 
 
-	</profiles>
-
-
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<executions>    <!--执行器 mvn assembly:assembly -->
-					<execution>
-						<id>make-tar.gz</id>
-						<!--名字任意 -->
-						<phase>package</phase>
-						<!-- 绑定到package生命周期阶段上 -->
-						<goals>
-							<goal>single</goal>
-							<!--只运行一次 -->
-						</goals>
-						<configuration>
-							<descriptors>
-								<descriptor>src/main/resources/assemble/descriptor.xml</descriptor>
-							</descriptors>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+	<!-- <build> <plugins> <plugin> <artifactId>maven-assembly-plugin</artifactId> 
+		<executions> 执行器 mvn assembly:assembly <execution> <id>make-tar.gz</id> 名字任意 
+		<phase>package</phase> 绑定到package生命周期阶段上 <goals> <goal>single</goal> 只运行一次 
+		</goals> <configuration> <descriptors> <descriptor>src/main/resources/assemble/descriptor.xml</descriptor> 
+		</descriptors> </configuration> </execution> </executions> </plugin> </plugins> 
+		</build> -->
 
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit}</version>
-			<scope>test</scope>
-		</dependency>
 
 
 		<dependency>
@@ -84,6 +45,30 @@
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.1.0.Final</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.validator.version}</version>
+		</dependency>
+	<!-- 	<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${javax.validation}</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.el</artifactId>
+			<version>${el.version}</version>
 		</dependency>
 
 		<!-- <dependency> <groupId>org.glassfish</groupId> <artifactId>javax.el</artifactId> 

@@ -26,7 +26,7 @@
             <outputDirectory>config/properties</outputDirectory>
         </fileSet>
 
-        <!--persistencet资源文件打包===star===-->
+      <!--   persistencet资源文件打包===star=== -->
         <fileSet>
             <directory>${basedir}/../fas-persistence/src/main/resources</directory>
             <includes>
@@ -42,7 +42,7 @@
             <directory>${basedir}/../fas-persistence/src/main/resources/properties/${mavenDir}</directory>
             <outputDirectory>config/properties</outputDirectory>
         </fileSet>
-        <!--persistence资源文件打包===end===-->
+        <!-- persistence资源文件打包===end=== -->
 
         <fileSet>
             <directory>${project.basedir}/src/main/log</directory>

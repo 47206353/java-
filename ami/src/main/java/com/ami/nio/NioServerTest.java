@@ -37,6 +37,11 @@ public class NioServerTest {
 	}
 
 	public static void main(String[] args) throws IOException {
+		System.setProperty("http.maxConnections","100000"); 
+		System.out.println(System.getProperty("http.maxConnections"));
+		
+		System.setProperty("http.maxConnections","100000"); 
+		System.setProperty("http.keepAlive","false");
 
 		NioServerTest ser = new NioServerTest(port);
 		ser.listen();

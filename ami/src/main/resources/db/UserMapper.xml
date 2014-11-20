@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--mapper namespace对应的是java的mapper（面向接口编程），如果不是面向接口编程可以对应User
+resultType 对应configuration中配置的别名-->
+
+<mapper namespace="ws.ami.mybitis.IUserMapper">
+
+
+      <resultMap type="User" id="resultListUser">
+        <id column="id" property="id" />
+        <result column="userName" property="userName" />
+        <result column="userAge" property="userAge" />
+        <result column="userAddress" property="userAddress" />
+    </resultMap>
+    
+    
+    
+    <select id="selectUserByID" parameterType="int" resultType="User">
+        select * from user where id = #{id}
+    </select>
+    
+    
+     <select id="selectUsers" parameterType="string" resultMap="resultListUser">
+        select * from user where userName like #{userName}
+    </select>
+    
+    
+</mapper>
+
+  
+    
+   

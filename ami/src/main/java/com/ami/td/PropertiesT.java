@@ -12,7 +12,7 @@ public class PropertiesT {
 
 		Properties pps = System.getProperties();
 		try {
-			pps.load(new FileInputStream("app.properties"));
+			//pps.load(new FileInputStream("app.properties"));
 		} catch (Exception e) {
 
 			e.printStackTrace();

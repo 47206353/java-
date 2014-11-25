@@ -16,6 +16,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
+import javax.naming.spi.DirectoryManager;
+
 public class NioServerTest {
 	private final static int port = 8080;
 	final private Selector selector;
@@ -136,12 +138,18 @@ public class NioServerTest {
 		
 		SocketChannel channel = (SocketChannel) key.channel();
 		ByteBuffer buf = ByteBuffer.allocate(1024);
+		//ByteBuffer.
+		
 		channel.read(buf);
 		buf.flip();
 
 		byte[] bs = new byte[buf.limit()];
 		buf.get(bs);
 		System.out.println("接收到的消息：=" + new String(bs));
+		
+	;
+		
+	//	((DirectBuffer)buf).cleaner().clean();
 
 		//channel.write(ByteBuffer.wrap("receive".getBytes()));
 

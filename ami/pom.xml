@@ -27,14 +27,14 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<mavenDir>dev</mavenDir>
+				<Dir>dev</Dir>
 				<env>dev</env>
 			</properties>
 		</profile>
 		<profile>
 			<id>test</id>
 			<properties>
-				<mavenDir>test</mavenDir>
+				<Dir>test</Dir>
 			</properties>
 		</profile>
 	</profiles>

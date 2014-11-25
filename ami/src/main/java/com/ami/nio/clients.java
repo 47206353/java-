@@ -14,15 +14,15 @@ public class clients {
 
 	final static String host = "127.0.0.1";
 	final static int port = 8080;
-	final static int numberOfConnects = 50000;
+	final static int numberOfConnects = 30000;
 	final static ConcurrentHashMap sockets = new ConcurrentHashMap<Integer, Socket>();
 
 	public static void main(String[] args) throws Exception {
 
 		for (int i = 0; i < numberOfConnects; i++) {
-			 Socket socket =connect(host, port);
+			Socket socket = connect(host, port);
 			System.out.println(i);
-			 add(new Integer(i), socket);
+			add(new Integer(i), socket);
 		}
 
 		monitor();
@@ -49,7 +49,7 @@ public class clients {
 				}
 			}
 		});
-		
+
 		monitor.start();
 	}
 
@@ -63,15 +63,25 @@ public class clients {
 	private static Socket connect(final String host, final int port)
 			throws UnknownHostException, IOException {
 
-		Socket client = new Socket(host, port);
+		try {
 
-		Writer writer = new OutputStreamWriter(client.getOutputStream());
-		writer.write("Hello Server.");
-		writer.flush();
-		// writer.close();
-		// client.close();
+			Socket client = new Socket(host, port);
+
+			Writer writer = new OutputStreamWriter(client.getOutputStream());
+			writer.write("Hello Server.");
+			writer.flush();
+			return client;
+			// writer.close();
+			// client.close();
+
+		} catch (Exception e) {
+			System.gc();
+			System.out.println("内存溢出");
 		
-	 return client;
+		}
+		
+
+		return null;
 
 	}
 
@@ -81,16 +91,17 @@ public class clients {
 	 * @param position
 	 * @param socket
 	 */
-	private static void add(final Integer position, final Socket socket) {
+	private synchronized static void add(final Integer position, final Socket socket) {
+		if(position != null && socket != null)
 		sockets.putIfAbsent(position, socket);
 
 	}
 
-	/*private static class Monitor implements Runnable {
-
-		public void run() {
-			System.out.println("client 数码为 =" + sockets.size());
-
-		}
-	}*/
+	/*
+	 * private static class Monitor implements Runnable {
+	 * 
+	 * public void run() { System.out.println("client 数码为 =" + sockets.size());
+	 * 
+	 * } }
+	 */
 }

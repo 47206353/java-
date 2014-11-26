@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class t {
 
 	public static void main(String[] args) {
@@ -8,7 +10,7 @@ public class t {
 		
 		String aa ="3*2";
 		
-		
+		new HashMap();
 		
 
 
